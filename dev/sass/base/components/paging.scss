@@ -1,5 +1,30 @@
+.KsPage{
+	li{
+		height: 36px;
+    	line-height: 36px;
+		display: inline-block;
+		width: 36px;
+		text-align: center;
+		border-radius: 4px;
+		color: #000;
+		cursor: pointer;
+		&:hover{
+			background: #f5f5f5;
+			color: #000;
+		}	
+	}
+	li.active,li.active:hover{
+		background: #2196f3;
+		color: #fff;
+	}
+	.frist,.last{
+		color: #999;
+	}
+}
+
 .paging-box{
 	@extend .row-auto;
+	@extend .KsPage;
 	color: #999;
 	line-height: 36px;
 	.statistical{
@@ -10,25 +35,5 @@
 			padding: 0 5px;
 		}
 	}
-	ul{
-		li{
-			display: inline-block;
-			width: 36px;
-			text-align: center;
-			border-radius: 4px;
-			color: #000;
-			cursor: pointer;
-			&:hover{
-				background: #f5f5f5;
-				color: #000;
-			}	
-		}
-		.active{
-			background: #2196f3;
-			color: #fff;
-		}
-		.frist,.last{
-			color: #999;
-		}
-	}
+	
 }

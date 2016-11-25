@@ -1,135 +1,212 @@
 <template>
-    <div class="page-bar" v-show="all>0">
-        <ul class="pagination">
-            <li class="dataTables-length" v-show="islength">
-                每页展示 
-                <div class="example1-length">
-                    <a v-for="n in pageSizeList" v-text="n" :class="{'active':pageSize == n}" @click="pageSize=n"></a>
-                </div>
-                条
-            </li>
-            <li v-show="page_total>1"><span class="homepage" v-on:click="jump('first')">首页</span></li>
-            <li v-if="page_total>1 && showFirst"><span class="btn-prev" v-on:click="cur--">上一页</span></li>
-            <li v-for="index in indexs"  v-bind:class="{ 'active': cur == index}">
-                <a v-on:click="btn_click(index)">{{ index }}</a>
-            </li>
-            <li v-if="page_total>1 && show_last"><span class="btn-next" v-on:click="cur++">下一页</span></li>
-            <li v-show="page_total>1"><span class="lastpage" v-on:click="jump('last')">尾页</span></li>
-            <li><span>共<i v-text="page_total"></i>页</span></li>
-            <!-- <li v-show="page_total>pageSize">&nbsp;&nbsp;&nbsp;&nbsp;第<input type="text" class="jump-input form-control" v-model="jump_val" v-limit-number="jump_val">页 <input type="button" value="确定" class="jump-button" @click="jump()" vaule="确定"></li> -->
-
-        </ul>
-    </div>
+    <ul class="KsPage">
+        <li>&lt;</li>
+        <li v-for="i in pages_array" v-text="i"></li>
+        <li>&gt;</li>
+    </ul>
 </template>
-
-
-
-
-<script>
-    /**
-     * 依赖的 filter_number 过滤器
-     */
+<script type="text/javascript">
     export default {
         props: {
-            all: { type: Number, default: 0 },
-            cur: { type: Number, default: 0 },
-            pageSizeList: { type: Array, required:false},
-            pageSize: { type: Number, default: '' }
+            // 总条数
+            total:{type:Number,default:0},
+            // 选中的页
+            page_current:{type:Number,default:2},
+            // 每页显示的分页个数
+            pages:{type:Number,default:7},
+            // 每页显示的条数
+            page_size:{type:Number,default:10}
         },
         data(){
             return {
-                islength:false,
-                jump_val:''
+                pages_array : [],
+                pages_count : this.pages
             }
         },
-        computed: {
-            page_total() {
-                return (this.all-(this.all%this.pageSize))/this.pageSize + ((this.all%this.pageSize) ? 1:0)
+        methods:{
+            // 初始
+            init(){
+                if(!total) return
+                this.total_count = get_total_count(this.total,this.page_size)
+                this.pages_array = get_page_array(this.total_count)
             },
-            indexs() {
+            // 总页数
+            get_total_count(total,page_size){
+                var mod = total % page_size
+                if(mod>0){
+                    return total / page_size + 1
+                }
+            },
+            // 最大页数
+            get_cur_count(cur,total){
+                return cur > total ? total : cur 
+            },
+            // 分页数组
+            get_page_array(total_count){
+                var len = total_count -1
+                var arr = []
+                for(var i = len; i>=0; i++ ){
+                    arr.push(i)
+                }
+                return arr
+            }
 
-                var left = 1
-                var right = this.page_total
-                var ar = []
-                if(this.page_total>= 11){
-                    if(this.cur > 5 && this.cur < this.page_total-4){
-                        left = this.cur - 5
-                        right = this.cur + 4
-                    }else{
-                        if(this.cur<=5){
-                            left = 1
-                            right = 10
-                        }else{
-                            right = this.page_total
-                            left = this.page_total -9
-                        }
-                    }
-                }
-                while (left <= right){
-                    ar.push(left)
-                    left ++
-                }
-                return ar
-            },
-            show_last() {
-                if(this.cur == this.page_total){
-                    return false
-                }
-                return true
-            },
-            showFirst() {
-                if(this.cur == 1){
-                    return false
-                }
-                return true
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <template>
+
+    <ul v-show="total" class="KsPage" cid="KsPage" @click="click_page_mian($event)">
+        <li :class="{'disabled':page_current == 1}">&lt;</li>
+        <li v-for="i in pages_array"
+            track-by="$index"
+            :class="{'active':page_current == i}" v-text="i"></li>
+        <li :class="{'disabled':page_current == total_count}">&gt;</li>
+    </ul>
+
+</template>
+<script type="text/javascript">
+    /**
+     * <li class="frist">&lt;</li>
+     * className不合理 ，目的表达不可点击状态 ，'disabled' 相关比较合理
+     */
+    
+    export default {
+        props: {
+            // 总条数
+            total: {type:Number, default:0 }, 
+            // 展示分页个数
+            pages: {type:Number, default:7 }, 
+            // 当前选中的页数
+            page_current: {type:Number, default:1 }, 
+            // 每页展示条数
+            page_size: {type:Number, default:10 } 
+        },
+        data (){
+            
+            return {
+                pages_array : [],
+                pages_count : this.pages
             }
         },
+        
         methods: {
-            btn_click(data) {
-                if(data != this.cur){
-                    this.cur = data
+            init (){
+                if(!this.total) return // 如果没有数据，直接跳出
+                if(this.pages%2==0) { // 如果分页展示个数为偶数
+                    this.pages = this.pages - 1 // 则展示分页个数-1
+                    console.error('分页中的参数 pages 请传入奇数 , 自动转为：'+this.pages)
                 }
+                this.total_count = this.get_total_count(this.total,this.page_size) // total_count总页数
+                this.pages_array = this.get_page_array(1,this.pages,this.total_count) // pages_array 分页页数形成的数组
             },
-            jump(type) {
-                switch(type){
-                    case 'first':
-                        this.cur = 1
-                    break
-                    case 'last':
-                        this.cur = this.page_total
-                    break
-                    default :
-                        if(+this.jump_val===0) this.jump_val = 1
-                        if(!+this.jump_val) return
+            // 总页数
+            get_total_count (total,page_size){ // total：数据总条数，page_size：每页展示多少条
+                var mod = total % page_size  // 总条数%每页展示条数，取余，如果大于0，那就说明最后一页有数据且比每页展示条数少
+                return  (total-mod)/page_size + (mod && 1) // (mod && 1):意思是如果mod为true，则return 1；总条数/每页展示=总页数，取余不为0时要+1
+            },
+                
+            // 最大页数
+            get_cur_count (cur,total){ // cur:选中的页,total：总页数
+                return  cur > total ? total : cur // 当选中的页>总页数时，显示总页数，否则，显示选中页
+            },
+            // 纯净 当前数组
+            get_pure_array (page_cur,pages,total_count){ // page_cur:选中的页,pages：每页显示几个分页,total_count：总共有多少页
+                var arr = [],len,cur_show_max // len:数组的长度，cur_show_max：显示的最大页数
 
-                        if(+this.jump_val>this.page_total){
-                             this.cur = this.page_total   
-                             this.jump_val = this.page_total
-                        }else{
-                            this.cur = +this.jump_val
-                        }
-                    break    
+                if(pages > total_count){ // 显示的分页数大于总页数
+                    pages = total_count  // 让显示的分页数与总页数相等，即有几页显示几页
+                    cur_show_max = total_count //显示的最大页数==总页数
+                    len = total_count-1  //长度是总页数-1，因为数组从0开始
+                }else{ //显示的分页数比总页数小
+                    len = pages - 1 //长度是显示分页的个数-1
+                    var cur_show_max = page_cur + len/2
+                    page_cur <= len/2  && (cur_show_max = pages) // 选中的页如果小于等于数组的一半长度，让最大页码等于分页显示的页数
+                    cur_show_max > total_count && (cur_show_max = total_count) // 如果最大显示页大于总页数，让最大页数等于总页数
                 }
+                    
+                
+                for (var i = len ; i>=0; i--){
+                    arr.push(cur_show_max - i)
+                }
+                return arr
+            },
+            // 折叠，添加省略号
+            has_fold (max,arr){
+                var last = arr.length-1
+
+                arr = [].concat(arr)
+                if(arr[0] > 1){
+                    arr[0] = 1
+                    arr[1] = '···'
+                }
+                if(arr[last] < max){
+                    arr[last] = max
+                    arr[last -1] = '···'
+                }
+                return arr
+            },
+            // 点击分页主体
+            click_page_mian (event){
+
+                var value = event.target.innerHTML.trim()
+
+                switch(true){
+                    // left
+                    case '&lt;' === value :
+                        --this.page_current
+                        this.page_current < 1 && (this.page_current = 1)
+                    break;
+                    // right
+                    case '&gt;' === value :
+                        ++this.page_current
+                        this.page_current = this.get_cur_count(this.page_current,this.total_count)
+                    break;
+                    case '···' === value :break;
+                    case !isNaN(value):
+                        this.page_current = +value
+                    break;
+                }
+
+
+            },
+            
+            get_page_array (page_cur,pages,total_count) { // 初始值(1,this.pages,this.total_count)
+                var arr 
+                arr = this.get_pure_array(page_cur,pages,total_count)    
+                arr = this.has_fold(total_count,arr) // 折叠，添加省略号
+                return arr
                 
             }
         },
         watch: {
-            pageSize() {
-                this.cur = 1
+            'page_size'(){
+                this.page_current = 1
             },
-            all(){
-                this.islength = this.all > this.pageSize
+            'total+page_size+pages'(){
+                this.init()
+            },
+            'page_current' (val){
+                this.$emit('current_change',val)
+                this.pages_array = this.get_page_array(val,this.pages,this.total_count)
             }
         },
-        ready() {
-            console.log(this.all)
-
-            !this.pageSizeList && (this.pageSizeList = [10,50,100])
-            this.pageSize || (this.pageSize = this.pageSizeList[0])
-
-
-            
-            console.log(this.islength)
+        created (){
+            this.init()
         }
     }
-</script>
+</script> -->

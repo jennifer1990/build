@@ -1,4 +1,4 @@
-//单选框
+// //单选框
 %clip-hidden{
 	position: absolute;
 	clip: rect(0,0,0,0); /* IE8+ */
@@ -61,3 +61,53 @@
 		@extend %ui-disabled;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .radio-inner{
+// 	width: 20px;
+//     height: 20px;
+//     display: inline-block;
+//     border: 1px solid #c8c8c8;
+//     border-radius: 50%;
+//     box-sizing: border-box;
+//     position: relative;
+//     &::after{
+//     	content: "";
+// 	    width: 10px;
+// 	    height: 10px;
+// 	    background: blue;
+// 	    display: inline-block;
+// 	    position: absolute;
+// 	    left: 50%;
+// 	    top: 50%;
+// 	    transform: translate(-50%,-50%);
+// 	    border-radius: 50%;
+//     }
+// }

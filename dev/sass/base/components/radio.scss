@@ -1,113 +1,70 @@
-// //单选框
-%clip-hidden{
-	position: absolute;
-	clip: rect(0,0,0,0); /* IE8+ */
-	*left: -999px;
+// 单选样式
+%radio-inner-after{
+	content:'';
+	width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    display: inherit;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
 }
-%ui-radio-un{
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	border: 1px solid rgba(208, 208, 213, 1);  /* IE7-IE8 ignore this */
-	background-color: #fff;
-	box-sizing: border-box;
-	vertical-align: -.5ex;
-	*vertical-align: 0;
-	-webkit-transition: border-color .2s;
-    transition: border-color .2s;
-	overflow: hidden;
-}
-%ui-radio-before{
-	content: '';
-	display: block;
-	width: 10px;
-	height: 10px;
-	margin: 4px auto 0;
-	background-color: #00a5e0;
-	visibility: hidden;
-}
-%ui-checked{
-	visibility: visible;
-	-webkit-animation: bounceIn .2s;
-	animation: bounceIn .2s;
-}
-%ui-disabled{
-	border-color: #ababaf;
-	opacity: .38;
-}
-.radio{
-	input[type=radio] {
-		@extend %clip-hidden;
-	}
-
-	.ui-radio {
-		@extend %ui-radio-un;
-		border-radius: 20px;
-		&::before {
-			@extend %ui-radio-before;
-			border-radius: 10px;
+.H-radio{
+	.H-radio-input{
+		position: relative;
+	    display: inline-block;
+	    cursor: pointer;
+	    vertical-align: middle;
+	    .H-radio-inner{
+			position: relative;
+			box-sizing: border-box;
+			width: 18px;
+		    height: 18px;
+		    display: inline-block;
+		    background: #fff;
+		    border-radius: 50%;
+		    border: 1px solid #d5d5d5;
+		    &:hover{
+		    	border-color:#8cc96c;
+		    }
+		}
+		.H-radio-original{
+			position: absolute;
+		    left: 0;
+		    top: 0;
+		    z-index: -1;
+		    opacity: 0;
+		    outline: 0;
 		}
 	}
-
-	:not(:disabled) + .ui-radio:hover {
-		border-color: #ababaf;
+	.checked.H-radio-input{
+		.H-radio-inner{
+		    background: #8cc96c;
+		    border-color:#8cc96c;
+		    &::after{
+		    	@extend %radio-inner-after;
+		    }
+		}
 	}
-
-	:checked + .ui-radio::before {
-		@extend %ui-checked;
+	.disabled.checked.H-radio-input{
+		cursor: not-allowed;
+		.H-radio-inner{
+		    background-color: #ccc;
+		    pointer-events: none;
+		    &::after{
+		    	@extend %radio-inner-after;
+		    }
+		}
 	}
-
-	:disabled + .ui-radio,.ui-radio.disabled {
-		@extend %ui-disabled;
+	.disabled.H-radio-input{
+		.H-radio-inner{
+			background-color: #e5e5e5;
+		}
+	}
+	.H-radio-label{
+		padding-left: 5px;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// .radio-inner{
-// 	width: 20px;
-//     height: 20px;
-//     display: inline-block;
-//     border: 1px solid #c8c8c8;
-//     border-radius: 50%;
-//     box-sizing: border-box;
-//     position: relative;
-//     &::after{
-//     	content: "";
-// 	    width: 10px;
-// 	    height: 10px;
-// 	    background: blue;
-// 	    display: inline-block;
-// 	    position: absolute;
-// 	    left: 50%;
-// 	    top: 50%;
-// 	    transform: translate(-50%,-50%);
-// 	    border-radius: 50%;
-//     }
-// }
+.H-radio + .H-radio { margin-left: 20px; }

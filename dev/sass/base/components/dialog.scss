@@ -1,11 +1,9 @@
-.dialog{
+%dialog{
     box-shadow: 0 0px 7px rgba(0, 0, 0, 0.2);
-    .content,.operation{
-    	padding: 20px;
-    }
-    .operation{
-    	.btn-plain-dark{
-    		margin-right: 10px;
-    	}
-    }
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    .content,.operation{ padding: 20px; }
+    .operation .btn-plain-dark{ margin-right: 10px; }
 }

@@ -1,78 +1,33 @@
 <template>
-	<div>
-		<!-- 内容弹出框 -->
-		<div class="dialog-bg-default">
-			<div class="title">
-				<h2>标题</h2>
-				<div class="close"><i class="icon">&#xe611;</i></div>
-			</div>
-			<div class="content">
-				内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框
-			</div>
-			<div class="operation">
-				<button class="btn-plain-dark">取消</button>
-				<button class="btn-primary">确定</button>
-			</div>
-		</div>
-		<!-- 红色弹出框 -->
-		<div class="dialog-bg-danger">
-			<div class="title">
-				<h2>标题</h2>
-				<div class="close"><i class="icon">&#xe611;</i></div>
-			</div>
-			<div class="content">
-				内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框
-			</div>
-			<div class="operation">
-				<button class="btn-plain-dark">取消</button>
-				<button class="btn-danger">确定</button>
-			</div>
-		</div>
-		<!-- 蓝色弹出框 -->
-		<div class="dialog-bg-primary">
-			<div class="title">
-				<h2>标题</h2>
-				<div class="close"><i class="icon">&#xe611;</i></div>
-			</div>
-			<div class="content">
-				内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框
-			</div>
-			<div class="operation">
-				<button class="btn-plain-dark">取消</button>
-				<button class="btn-primary">确定</button>
-			</div>
-		</div>
-		<!-- 绿色弹出框 -->
-		<div class="dialog-bg-success">
-			<div class="title">
-				<h2>标题</h2>
-				<div class="close"><i class="icon">&#xe611;</i></div>
-			</div>
-			<div class="content">
-				内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框
-			</div>
-			<div class="operation">
-				<button class="btn-plain-dark">取消</button>
-				<button class="btn-success">确定</button>
-			</div>
-		</div>
-		<!-- 橙色弹出框 -->
-		<div class="dialog-bg-warning">
-			<div class="title">
-				<h2>标题</h2>
-				<div class="close"><i class="icon">&#xe611;</i></div>
-			</div>
-			<div class="content">
-				内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框
-			</div>
-			<div class="operation">
-				<button class="btn-plain-dark">取消</button>
-				<button class="btn-warning">确定</button>
-			</div>
-		</div>
 
-		
+	<btn type="primary" @click="openDialog('primary')">提示默认对话框</btn>
+	<btn type="success" @click="openDialog('success')">提示成功对话框</btn>
+	<btn type="warning" @click="openDialog('warning')">提示警告对话框</btn>
+	<btn type="danger" @click="openDialog('danger')">提示错误对话框</btn>
+	<btn type="info" @click="openDialog('info')">提示信息对话框</btn>
 
-	</div>
+    <br>
 
+	<dialog :type="type" :show.sync="show">
+		<h2 slot="title">标题</h2>
+		<p slot="content">内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出框内容弹出</p>
+	</dialog>
+	
 </template>
+
+<script type="text/javascript">
+	export default{
+		data(){
+			return{
+				show:false,
+				type:''
+			}
+		},
+		methods:{
+			openDialog(val) {
+				this.show = true;
+				this.type = val;
+			}
+		}
+	}
+</script>

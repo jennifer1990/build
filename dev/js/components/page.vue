@@ -1,74 +1,52 @@
-<template>
+<!-- <template>
     <ul class="KsPage">
         <li>&lt;</li>
-        <li v-for="i in pages_array" v-text="i"></li>
+        <li :class="{'active': page_current == item}" v-for="item in pages_array">{{item}}</li>
         <li>&gt;</li>
     </ul>
 </template>
+
 <script type="text/javascript">
-    export default {
-        props: {
+    export default{
+        props:{
             // 总条数
-            total:{type:Number,default:0},
-            // 选中的页
-            page_current:{type:Number,default:2},
-            // 每页显示的分页个数
-            pages:{type:Number,default:7},
-            // 每页显示的条数
-            page_size:{type:Number,default:10}
+            total:{type:Number, default:0},
+            // 展示分页个数
+            pages:{type:Number, default:0},
+            // 当前选中的页数
+            page_current:{type:Number, default:1},
+            // 每页展示条数
+            page_size:{type:Number, default:10}
         },
         data(){
-            return {
-                pages_array : [],
-                pages_count : this.pages
+            return{
+                pages_array:[1,2,3,4,5,6,7,8,9]
             }
         },
         methods:{
-            // 初始
-            init(){
-                if(!total) return
-                this.total_count = get_total_count(this.total,this.page_size)
-                this.pages_array = get_page_array(this.total_count)
+            init (){
+                if(!this.total) return
+                this.pages_array = this.get_page_array()  
             },
             // 总页数
-            get_total_count(total,page_size){
-                var mod = total % page_size
-                if(mod>0){
-                    return total / page_size + 1
+            get_page_array(){
+                debugger
+                this.pages = this.total / this.page_size
+                var x =''
+                for(i>0; i<=this.pages; i++){
+                    x = i
                 }
-            },
-            // 最大页数
-            get_cur_count(cur,total){
-                return cur > total ? total : cur 
-            },
-            // 分页数组
-            get_page_array(total_count){
-                var len = total_count -1
-                var arr = []
-                for(var i = len; i>=0; i++ ){
-                    arr.push(i)
-                }
-                return arr
+                return x.split(',');
             }
-
+        },
+        created (){
+            this init ();
         }
     }
-</script>
+</script> -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <template>
+<template>
 
     <ul v-show="total" class="KsPage" cid="KsPage" @click="click_page_mian($event)">
         <li :class="{'disabled':page_current == 1}">&lt;</li>
@@ -209,4 +187,4 @@
             this.init()
         }
     }
-</script> -->
+</script>

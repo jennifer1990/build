@@ -61,6 +61,7 @@
 	.disabled.H-radio-input{
 		.H-radio-inner{
 			background-color: #e5e5e5;
+			pointer-events: none;
 		}
 	}
 	.H-radio-label{

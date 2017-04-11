@@ -9,6 +9,7 @@
 		{{label}}
 		<span class="H-radio-label">
 			<slot></slot>
+			<template v-if="!$slots.default">{{label}}</template>
 		</span>
 	</label>
 </template>
@@ -18,6 +19,9 @@
 			label:{},
 			disabled: Boolean,
 			name: String
+		},
+		data(){
+			return{}
 		}
 	}
 </script>

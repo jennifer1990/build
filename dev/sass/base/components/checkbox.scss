@@ -1,27 +1,81 @@
-// //复选框
-// .checkbox{
-// 	input[type=checkbox] {
-// 		@extend %clip-hidden;
-// 	}
+%checkbox-inner-after{
+	box-sizing: content-box;
+    content: "";
+    border: 2px solid #fff;
+    border-left: 0;
+    border-top: 0;
+    height: 8px;
+    left: 5px;
+    position: absolute;
+    top: 1px;
+    transform: rotate(45deg) scaleY(0);
+    width: 4px;
+}
+.H-checkbox{
+	.H-checkbox-input{
+		position: relative;
+    	display: inline-block;
+    	cursor: pointer;
+	    vertical-align: middle;
+		.H-checkbox-inner{
+			width: 18px;
+		    height: 18px;
+		    display: inline-block;
+		    border: 1px solid #d5d5d5;
+		    box-sizing: border-box;
+		    border-radius: 4px;
+	        position: relative;
+		    &:hover{
+		    	border-color:#8cc96c;
+		    }
+		}
+		.H-checkbox-original{
+			position: absolute;
+		    left: 0;
+		    top: 0;
+		    outline: 0;
+		    opacity: 0;
+		    z-index: -1;
+		}
+	}
+	.checked.H-checkbox-input{
+		.H-checkbox-inner{
+			background: #8cc96c;
+		    border-color:#8cc96c;
+		    &::after{
+		    	box-sizing: content-box;
+			    content: "";
+			    border: 2px solid #fff;
+			    border-left: 0;
+			    border-top: 0;
+			    height: 8px;
+			    left: 5px;
+			    position: absolute;
+			    top: 1px;
+			    transform: rotate(45deg) scaleY(1);
+			    width: 4px;
+		    }
+		}
+	}
+	
+	.disabled.H-checkbox-input{
+		.H-checkbox-inner{
+			background-color: #e5e5e5;
+			border-color: #d5d5d5;
+			pointer-events: none;
+		}
+	}
+	.disabled.checked.H-checkbox-input{
+		cursor: not-allowed;
+		.H-radio-inner{
+		    background-color: #ccc;
+		    pointer-events: none;
+		}
+	}
 
-// 	.ui-checkbox {
-// 		@extend %ui-radio-un;
-// 		border-radius: 4px;
-// 		&::before {
-// 			@extend %ui-radio-before;
-// 			border-radius: 2px;
-// 		}
-// 	}
+	.H-checkbox-label{
+		margin-left: 5px;
+	}
+}
+.H-checkbox + .H-checkbox{ margin-left: 20px; }
 
-// 	:not(:disabled) + .ui-checkbox:hover {
-// 		border-color: #ababaf;
-// 	}
-
-// 	:checked + .ui-checkbox::before {
-// 		@extend %ui-checked;
-// 	}
-
-// 	:disabled + .ui-checkbox,.ui-checkbox.disabled {
-// 		@extend %ui-disabled;
-// 	}
-// }

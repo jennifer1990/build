@@ -1,6 +1,6 @@
 /* 图标弹框 */
 .dialog-icon{
-	@extend .dialog;
+	@extend %dialog;
 	width: 420px;
 	padding-top: 20px;
 	.title{

@@ -14,7 +14,7 @@
 			}
 		},
 		ready () {
-			this.total = 121
+			this.total = 100
 		}
 	}
 </script>

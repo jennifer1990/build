@@ -8,7 +8,7 @@ import components from './components/index'
 import routers from './routers'
 Object.keys(components).forEach(k => {
     var a = Vue.component(k, components[k])
-    console.log(a)
+    // console.log(a)
 })
 
 Vue.use(VueResource)

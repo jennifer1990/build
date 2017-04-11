@@ -153,16 +153,128 @@ export default function (Vue,router){
                 }
             },
 
-            // 步骤
-            // '/step':{
-            //     name:'step',
-            //     title:'步骤',
-            //     component: function(resolve){
-            //         require(['./views/step/step.vue'], (res)=> {
-            //             resolve(res)
-            //         })
-            //     }
-            // },
+            // 查看图片组件
+            '/image':{
+                name:'image',
+                title:'查看图片组件',
+                component: function(resolve){
+                    require(['./views/image/image.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // 点点点加载动画
+            '/animation-loading':{
+                name:'animation-loading',
+                title:'点点点加载动画',
+                component: function(resolve){
+                    require(['./views/animation-loading/animation-loading.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // vue 练习
+            '/exercise':{
+                name:'exercise',
+                title:'点点点加载动画',
+                component: function(resolve){
+                    require(['./views/learn-vue/exercise.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+            // vue 练习(添加与删除)
+            '/add-and-delete':{
+                name:'add-and-delete',
+                title:'添加与删除',
+                component: function(resolve){
+                    require(['./views/learn-vue/add-and-delete.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+            // vue 练习(增删改查)
+            '/curd':{
+                name:'curd',
+                title:'增删改查',
+                component: function(resolve){
+                    require(['./views/learn-vue/curd.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // tally
+            '/tally':{
+                name:'tally',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/select/tally.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // quanxian
+            '/quanxian':{
+                name:'quanxian',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/quanxian/quanxian.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // *****************************************************************************************************
+
+            // vue 学习
+            '/vue实例':{
+                name:'vue实例',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/learn-vue/vue实例.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // vue 学习练习
+            '/vue实例练习':{
+                name:'vue实例练习',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/learn-vue/vue实例练习.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // 仿qq个性名片标签
+            '/仿qq个性名片标签':{
+                name:'仿qq个性名片标签',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/shili/仿qq个性名片标签.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // 选择门店
+            '/选择门店':{
+                name:'选择门店',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/shili/选择门店.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+        
 
         }
     }

@@ -12,7 +12,7 @@
      */
     function mock (Vue, ismock) {
         if (ismock) {
-            console.log('mock ....')
+            // console.log('mock ....')
                 /**
                  * Mock 数据 必要配置
                  * 添加 mock 标示在请求头中

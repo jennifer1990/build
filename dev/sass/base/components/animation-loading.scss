@@ -1,0 +1,17 @@
+dot{
+	display: inline-block;
+    height: 1em;
+    line-height: 1;
+    overflow: hidden;
+    vertical-align: -0.25em;
+	&::before{
+		content: '...\A..\A.';
+		display: block;
+    	white-space: pre-wrap;
+    	animation: dot 3s infinite step-start both;
+	}
+}
+@keyframes dot{
+	33% { transform: translateY(-2em); }
+	66% { transform: translateY(-1em); }
+}

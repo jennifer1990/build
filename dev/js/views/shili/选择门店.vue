@@ -1,14 +1,15 @@
 <template>
 	<div class="L-box">
-		<div class="L-box">
+		<btn type="primary" @click="isShow=true">点击选择门店</btn>
+		<div class="L-box" v-show="isShow">
 			<ul class="store-list">
 				<li v-for="item in cusStoreList" :class="{'active':item.isChecked || check}" @click="checkedStore($index)">{{item.name}}{{item.isChecked}}</li>
 			</ul>
 			<div class="btn-group">
-				<span>重选</span>
-				<span @click="allChecked">全选</span>
-				<span><btn type="primary" :plain="true">取消</btn></span>
-				<span><btn type="primary">确定</btn></span>
+				<span @click="reelect">重选</span>
+				<span @click="checkAll">全选</span>
+				<span><btn type="primary" :plain="true" @click="cancel">取消</btn></span>
+				<span><btn type="primary" @click="close()">确定</btn></span>
 			</div>
 		</div>
 
@@ -58,43 +59,31 @@
 	}
 </style>
 
-<!--  -->
-
 <script type="text/javascript">
-	/*
-	*  新建一个数组，用来存放选中的店
-	*
-	*
-	*/
 	export default{
 		data(){
 			return{
 				storeList:["店一","店二","店三","店四","店五","店六","店七"],
 				isChecked:false,
-				check:false,
+				isShow:false,
 				cusStoreList:[], // 给每项添加了isChecked，用来标示是否选中
 				checkedStores:[] // 选中的门店
 			}
 		},
 		methods:{
-			
 			// 给每项添加一个isChecked
 			addChecked(){
-				// 给每项添加一个isChecked
-				let index
-				for(index in this.storeList){
+				let i
+				for(i in this.storeList){
 					this.cusStoreList.push({
-						"name":this.storeList[index],
+						"name":this.storeList[i],
 						"isChecked":false
 					})
 				}
-				// console.log(this.cusStoreList)
-
 			},
 			// 单个选中门店的样式
 			checkedStore(index){
 				this.checkedStores = [];
-				// debugger
 				this.cusStoreList[index].isChecked = !this.cusStoreList[index].isChecked
 
 				this.cusStoreList.forEach(item=>{
@@ -104,26 +93,30 @@
 				})
 			},
 			// 全选
-			allChecked(){
-				this.cusStoreList.isChecked = true;
-				this.check = true;
-
+			checkAll(){
 				this.checkedStores = [];
-
-				this.cusStoreList.forEach(item=>{
-					this.checkedStores.push(item.name)
+				this.cusStoreList.forEach(i=>{
+					i.isChecked = true;
+					this.checkedStores.push(i.name)
 				})
-
+			},
+			// 重选
+			reelect(){
+				this.checkedStores = [];
+				this.cusStoreList.forEach(i=>{
+					i.isChecked = false;
+				})
+			},
+			// 关闭
+			close(){
+				this.isShow = false
+			},
+			// 取消
+			cancel(){
+				this.reelect()
+				this.close()
 			}
-		},
-		watch:{
-			// list(val){
-			// 	val.forEach(item=>{
-			// 		if(item.isChecked == false) {
-			// 			this.check = false;
-			// 		}
-			// 	})
-			// }
+			// 确定
 		},
 		ready(){
 			this.addChecked();

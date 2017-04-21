@@ -3,7 +3,7 @@
 		<btn type="primary" @click="isShow=true">点击选择门店</btn>
 		<div class="L-box" v-show="isShow">
 			<ul class="store-list">
-				<li v-for="item in cusStoreList" :class="{'active':item.isChecked || check}" @click="checkedStore($index)">{{item.name}}{{item.isChecked}}</li>
+				<li v-for="item in cusStoreList" :class="{'active':item.isChecked || check}" @click="checkedStore(item)">{{item.name}}{{item.isChecked}}</li>
 			</ul>
 			<div class="btn-group">
 				<span @click="reelect">重选</span>
@@ -82,13 +82,13 @@
 				}
 			},
 			// 单个选中门店的样式
-			checkedStore(index){
+			checkedStore(item){
 				this.checkedStores = [];
-				this.cusStoreList[index].isChecked = !this.cusStoreList[index].isChecked
+				item.isChecked = !item.isChecked
 
-				this.cusStoreList.forEach(item=>{
-					if(item.isChecked == true){
-						this.checkedStores.push(item.name)
+				this.cusStoreList.forEach(i=>{
+					if(i.isChecked == true){
+						this.checkedStores.push(i.name)
 					}
 				})
 			},

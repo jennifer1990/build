@@ -274,6 +274,17 @@ export default function (Vue,router){
                 }
             },
 
+            // 列表的增删改查
+            '/列表的增删改查':{
+                name:'列表的增删改查',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/shili/列表的增删改查.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
         
 
         }

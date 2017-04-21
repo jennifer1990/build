@@ -62,6 +62,7 @@
         <a class="h3" v-link="{name:'image'}">查看图片组件</a><br>
         <a class="h3" v-link="{name:'仿qq个性名片标签'}">仿qq个性名片标签</a><br>
         <a class="h3" v-link="{name:'选择门店'}">选择门店</a><br>
+        <a class="h3" v-link="{name:'列表的增删改查'}">列表的增删改查</a><br>
 
         
        
@@ -90,6 +91,9 @@
         content: ', ';
         font-weight: normal;
         margin-left: -.25em;
+    }
+    a:visited{
+        background: green;
     }
 </style>
 <script >

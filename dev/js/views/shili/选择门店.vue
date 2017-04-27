@@ -14,6 +14,8 @@
 		</div>
 
 		<div>选中的门店：{{checkedStores}}</div>
+
+		<div><input type="text" name=""></div>
 	</div>
 </template>
 

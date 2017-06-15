@@ -285,6 +285,40 @@ export default function (Vue,router){
                 }
             },
 
+            // vue实现展开收起效果
+            '/vue实现展开收起效果':{
+                name:'vue实现展开收起效果',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/shili/vue实现展开收起效果.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // tab切换展示内容
+            '/tab切换展示内容':{
+                name:'tab切换展示内容',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/shili/tab切换展示内容.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+            // 各类下拉列表
+            '/各类下拉列表':{
+                name:'各类下拉列表',
+                title:'标签',
+                component: function(resolve){
+                    require(['./views/shili/各类下拉列表.vue'], (res)=> {
+                        resolve(res)
+                    })
+                }
+            },
+
+
         
 
         }

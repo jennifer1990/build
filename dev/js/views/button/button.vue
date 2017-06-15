@@ -9,6 +9,7 @@
 	<btn type="warning">warning</btn>
 	<btn type="danger">danger</btn>
 	<btn type="info">info</btn>
+	<btn type="default">default</btn>
 	<btn></btn>
 
 	<br>
@@ -29,6 +30,7 @@
 	<btn type="warning" :plain="true">warning plain</btn>
 	<btn type="danger" :plain="true">danger plain</btn>
 	<btn type="info" :plain="true">info plain</btn>
+	<btn type="default" :plain="true">default plain</btn>
 
 	<br>
 	<br>

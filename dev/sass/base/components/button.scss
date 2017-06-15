@@ -3,6 +3,7 @@ $success: #4CAF50;
 $warning: #FF5722;
 $danger: #F44336;
 $info: #00BCD4;
+$default: #c8c8c8;
 $plain: true;
 
 .btn{
@@ -49,11 +50,13 @@ $plain: true;
  @include create-btn(false,warning,$warning)
  @include create-btn(false,danger,$danger)
  @include create-btn(false,info,$info)
+ @include create-btn(false,default,$default)
  @include create-btn(true,primary,$primary)
  @include create-btn(true,success,$success)
  @include create-btn(true,warning,$warning)
  @include create-btn(true,danger,$danger)
  @include create-btn(true,info,$info)
+ @include create-btn(true,default,$default)
 
 // size
 .btn-large{
@@ -69,8 +72,7 @@ $plain: true;
     line-height: 22px;
 }
 
-// disabled
-// .disabled{
-//     opacity: .5;
-//     cursor: not-allowed;
-// }
+.disabled{
+    opacity: .5;
+    cursor: not-allowed;
+}

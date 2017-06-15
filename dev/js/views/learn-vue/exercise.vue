@@ -400,7 +400,7 @@
 <!-- ***************************************************************************************** -->
 
 
-<template>
+<!-- <template>
     <div>
       	<input type='checkbox' v-on:click='checkedAll'>全选
       	<template v-for='checkb in checkboxData'>
@@ -461,7 +461,7 @@
 		}
 		
 	}
-</script>
+</script> -->
 
 <!-- <template>
 	<div class="m100">
@@ -532,3 +532,45 @@
 		}
 	}
 </script> -->
+
+
+
+<!-- ***************************************************************************************** -->
+
+<!-- 练习使用watch -->
+<!-- <template>
+	<div>
+		<div :style="{color:colorv}">fontcolor</div>
+		{{fontcolor}}
+		<select v-model="fontcolor">
+			<option value="">请选择</option>
+			<option value="red">red</option>
+			<option value="green">green</option>
+			<option value="blue">blue</option>
+		</select>
+	</div>
+</template>
+<script type="text/javascript">
+	export default{
+		data(){
+			return{
+				fontcolor:'',
+				colorv:''
+			}
+		},
+		watch:{
+			'fontcolor': function(val, oldVal){
+				this.colorv = ''
+		      	if(val == ""){
+		        	return
+		      	}else{
+		        	this.colorv  = this.fontcolor
+		        	console.log(this.colorv)
+		      	}
+		    }
+		}
+	}
+</script> -->
+
+
+<!-- ***************************************************************************************** -->

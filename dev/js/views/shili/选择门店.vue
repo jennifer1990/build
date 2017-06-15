@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<div class="L-box">
 		<btn type="primary" @click="isShow=true">点击选择门店</btn>
 		<div class="L-box" v-show="isShow">
@@ -124,4 +124,57 @@
 			this.addChecked();
 		}
 	}
-</script>
+</script> -->
+
+
+
+
+<!-- 事件冒泡 -->
+<!-- <template>
+	<div @click="clickMe">
+		父级
+		<a @click.stop="clickMe">阻止事件冒泡</a>
+	</div>
+	<div @click.capture=""></div>
+
+	<select v-model="aaa">
+		<option :value="1">1</option>
+		<option :value="2">2</option>
+		<option :value="3">3</option>
+	</select>
+</template>
+
+<script type="text/javascript">
+	export default{
+		data(){
+			return{
+				aaa:''
+			}
+		},
+		methods:{
+			clickMe(){
+				alert("11111111")
+			}
+			captureevent(){
+				if(this.aaa)
+			}
+		}
+	}
+</script> -->
+
+
+<!--<template>-->
+	<!--<div>-->
+		<!--<div v-html="hi"></div>-->
+	<!--</div>-->
+<!--</template>-->
+
+<!--<script type="text/javascript">-->
+	<!--export default{-->
+		<!--data(){-->
+			<!--return{-->
+				<!--hi:"<h1>hi</h1>"-->
+			<!--}-->
+		<!--}-->
+	<!--}-->
+<!--</script>-->
